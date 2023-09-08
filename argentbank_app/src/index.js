@@ -7,11 +7,14 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
+import { logInUser } from './actions/getUser';
 
 const store = configureStore({
   reducer: rootReducer,
   devTools: false
 })
+
+store.dispatch(logInUser)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
