@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import Navigation from '../components/Navigation';
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -24,7 +25,9 @@ const Login = () => {
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
                         {/* PLACEHOLDER DUE TO STATIC SITE */}
-                        <a href="./user.html" className="sign-in-button">Sign In</a>
+                        <NavLink to="/userpage" className="main-nav-logo">
+                            <p>Sign In</p>
+                        </NavLink>
                         {/* SHOULD BE THE BUTTON BELOW */}
                         {/* <button className="sign-in-button">Sign In</button> */}
                         {/*  */}
@@ -32,7 +35,7 @@ const Login = () => {
                 </section>
             </main>
             <Footer />
-        </div>
+        </div >
     );
 };
 
