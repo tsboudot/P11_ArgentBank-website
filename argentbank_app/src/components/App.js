@@ -1,8 +1,8 @@
 import Homepage from '../pages/Homepage';
 import Login from '../pages/Login';
-import Userpage from '../pages/Userpage';
 import '../styles/index.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PrivateRoute from './PrivateRoute';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/userpage" element={<Userpage />} />
+        <Route path="/userpage" element={<PrivateRoute />} />
       </Routes>
     </BrowserRouter>
   );
