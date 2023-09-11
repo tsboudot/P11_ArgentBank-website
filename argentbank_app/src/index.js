@@ -11,16 +11,17 @@ import rootReducer from "./reducers";
 
 const store = configureStore({
   reducer: rootReducer,
-  devTools: false
-})
+  // Supprimez la ligne suivante ou changez-la en true
+  devTools: true
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store} >
+    <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode >
+  </React.StrictMode>
 );
 
 reportWebVitals();
