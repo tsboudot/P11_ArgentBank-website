@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import Navigation from '../components/Navigation';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Importez useNavigate ici
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/getUser';
 
-const Login = () => {
+const Login = ({ loginUser, isAuthenticated }) => {
+    const [credentials, setCredentials] = useState({
+        username: '',
+        password: ''
+    });
+
+    const handleChange = (event) => {
+        const { id, value } = event.target;
+        setCredentials(prevState => ({
+            ...prevState,
+            [id]: value
+        }));
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        loginUser(credentials.username, credentials.password);
+    };
+
+    const navigate = useNavigate(); // Utilisez le hook ici
+
+    if (isAuthenticated) {
+        navigate("/userpage"); // Utilisez navigate pour rediriger vers /userpage
+        return; // Vous pouvez simplement retourner après avoir redirigé pour éviter le rendu du reste du composant
+    }
+
     return (
         <div>
             <Navigation />
@@ -11,32 +38,40 @@ const Login = () => {
                 <section className="sign-in-content">
                     <i className="fa fa-user-circle sign-in-icon"></i>
                     <h1>Sign In</h1>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="input-wrapper">
                             <label htmlFor="username">Username</label>
-                            <input type="text" id="username" />
+                            <input
+                                type="text"
+                                id="username"
+                                value={credentials.username}
+                                onChange={handleChange} />
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
-                            <input type="password" id="password" />
+                            <input
+                                type="password"
+                                id="password"
+                                value={credentials.password}
+                                onChange={handleChange} />
                         </div>
                         <div className="input-remember">
                             <input type="checkbox" id="remember-me" />
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
-                        {/* PLACEHOLDER DUE TO STATIC SITE */}
-                        <NavLink to="/userpage" className="main-nav-logo">
-                            <p>Sign In</p>
-                        </NavLink>
-                        {/* SHOULD BE THE BUTTON BELOW */}
-                        {/* <button className="sign-in-button">Sign In</button> */}
-                        {/*  */}
+                        <button className="sign-in-button" type="submit">Sign In</button>
                     </form>
                 </section>
             </main>
             <Footer />
-        </div >
+        </div>
     );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated // Adaptez cela en fonction de la structure de votre state Redux
+    };
+};
+
+export default connect(mapStateToProps, { loginUser })(Login);
