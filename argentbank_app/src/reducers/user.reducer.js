@@ -1,5 +1,9 @@
 const initialState = {
-    user: null,
+    user: {
+        email: null,
+        userName: null,
+        // ... d'autres attributs du profil
+    },
     isAuthenticated: false,
     error: null
 };
@@ -12,12 +16,11 @@ export default function userReducer(state = initialState, action) {
                 user: action.payload
             };
         case 'USER_LOGIN_SUCCESS':
-            // Mettez à jour l'état en cas de succès de la connexion
             return {
                 ...state,
-                user: action.payload,  // Ici, nous mettons à jour les informations de l'utilisateur
-                isAuthenticated: true, // Supposons que vous ayez un champ pour vérifier si l'utilisateur est authentifié
-                error: null  // Réinitialiser les erreurs précédentes, si elles existent
+                user: action.payload, // Cela comprendra l'email et les détails du profil
+                isAuthenticated: true,
+                error: null
             };
         case 'USER_LOGIN_FAILURE':
             // Mettez à jour l'état en cas d'échec de la connexion
