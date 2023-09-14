@@ -9,7 +9,7 @@ export const loginUser = (credentials) => {
 };
 
 export const getUserProfile = (token) => {
-    return api.get('/user/profile', { headers: { Authorization: `Bearer ${token}` } });
+    return api.post('/user/profile', {}, { headers: { Authorization: `Bearer ${token}` } });
 };
 
 export const updateUserProfile = (data, token) => {
