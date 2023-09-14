@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import EditNameModal from '../components/editNameModal.js'
 
 const Userpage = () => {
+    const [isModalOpen, setModalOpen] = useState(false);
     return (
         <div>
             <Navigation />
             <main className="main bg-dark">
                 <div className="header">
                     <h1>Welcome back<br />Tony Jarvis!</h1>
-                    <button className="edit-button">Edit Name</button>
+                    <button className="edit-button" onClick={() => setModalOpen(true)}>Edit Name</button>
                 </div>
                 <h2 className="sr-only">Accounts</h2>
                 <section className="account">
@@ -21,7 +23,13 @@ const Userpage = () => {
                     <div className="account-content-wrapper cta">
                         <button className="transaction-button">View transactions</button>
                     </div>
+                    <div>
+
+                        {isModalOpen && <EditNameModal onClose={() => setModalOpen(false)} />}
+
+                    </div>
                 </section>
+
                 <section className="account">
                     <div className="account-content-wrapper">
                         <h3 className="account-title">Argent Bank Savings (x6712)</h3>
