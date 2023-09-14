@@ -1,0 +1,65 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "API Transactions"
+  description: "API pour gérer les transactions."
+basePath: "/v1"
+schemes:
+  - http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  /transactions:
+    get:
+      summary: "Liste toutes les transactions"
+      description: "Récupère toutes les transactions pour un utilisateur donné."
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: "Succès"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Transaction"
+        401:
+          description: "Non autorisé"
+    post:
+      summary: "Ajoute une nouvelle transaction"
+      description: "Ajoute une nouvelle transaction pour un utilisateur donné."
+      security:
+        - Bearer: []
+      parameters:
+        - in: body
+          name: transaction
+          description: "Information de la transaction à ajouter"
+          schema:
+            $ref: "#/definitions/Transaction"
+      responses:
+        201:
+          description: "Créé"
+        400:
+          description: "Requête invalide"
+        401:
+          description: "Non autorisé"
+definitions:
+  Transaction:
+    type: object
+    properties:
+      transactionId:
+        type: string
+      userId:
+        type: string
+      accountId:
+        type: string
+      date:
+        type: string
+        format: date
+      amount:
+        type: number
+        format: double
+      category:
+        type: string
