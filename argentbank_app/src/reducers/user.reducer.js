@@ -2,7 +2,6 @@ const initialState = {
     user: {
         email: null,
         userName: null,
-        // ... d'autres attributs du profil
     },
     isAuthenticated: false,
     error: null
