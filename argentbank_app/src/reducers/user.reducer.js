@@ -5,7 +5,7 @@ const initialState = {
             userName: "",
         }
     },
-    isAuthenticated: false,
+    isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
     error: null
 };
 
@@ -17,9 +17,10 @@ export default function userReducer(state = initialState, action) {
                 user: action.payload
             };
         case 'USER_LOGIN_SUCCESS':
+            localStorage.setItem('isAuthenticated', 'true');
             return {
                 ...state,
-                user: action.payload, // Cela comprendra l'email et les détails du profil
+                user: action.payload,
                 isAuthenticated: true,
                 error: null
             };
@@ -45,10 +46,11 @@ export default function userReducer(state = initialState, action) {
                 error: action.payload  // Stocker le message d'erreur renvoyé par l'action
             };
         case 'USER_LOGOUT':
+            localStorage.removeItem('isAuthenticated');
             return {
                 ...state,
                 isAuthenticated: false,
-                user: initialState.user  // Réinitialisez l'utilisateur à sa valeur initiale
+                user: initialState.user
             };
         default:
             return state;
