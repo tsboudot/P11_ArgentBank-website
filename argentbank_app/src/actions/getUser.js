@@ -25,3 +25,9 @@ export const loginUser = (email, password) => async dispatch => {
         });
     }
 };
+export const logoutUser = () => {
+    return dispatch => {
+        localStorage.removeItem('authToken'); // Supprimer le token si vous le stockez dans le localStorage
+        dispatch({ type: 'USER_LOGOUT' });
+    };
+};

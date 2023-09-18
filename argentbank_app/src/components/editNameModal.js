@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { updateUserName } from '../actions/updateUser';
 
-const EditNameModal = ({ onClose }) => {
+const EditNameModal = ({ onClose, updateUserName }) => {
     const [newUserName, setNewUserName] = useState('');
+    const token = localStorage.getItem('token'); // Récupérez le token depuis le local storage
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Ici, vous pouvez gérer la logique pour mettre à jour le nom de l'utilisateur
-        console.log('Nouveau nom d\'utilisateur:', newUserName);
-        onClose(); // ferme la modale après la soumission
+        updateUserName(newUserName, token); // Mettre à jour le nom d'utilisateur
+        onClose();
     };
 
     return (
@@ -32,4 +34,4 @@ const EditNameModal = ({ onClose }) => {
 };
 
 
-export default EditNameModal;
+export default connect(null, { updateUserName })(EditNameModal);
