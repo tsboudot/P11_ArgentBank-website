@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Userpage from '../pages/Userpage';  // Assurez-vous que ce chemin est correct
+import Userpage from '../pages/Userpage';
 
 const PrivateRoute = () => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);

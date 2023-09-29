@@ -4,11 +4,11 @@ import { updateUserName } from '../actions/updateUser';
 
 const EditNameModal = ({ onClose, updateUserName }) => {
     const [newUserName, setNewUserName] = useState('');
-    const token = localStorage.getItem('token'); // Récupérez le token depuis le local storage
+    const token = localStorage.getItem('token');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateUserName(newUserName, token); // Mettre à jour le nom d'utilisateur
+        updateUserName(newUserName, token);
         onClose();
     };
 

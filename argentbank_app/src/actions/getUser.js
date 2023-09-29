@@ -9,13 +9,13 @@ export const loginUser = (email, password) => async dispatch => {
 
         const token = response.data.body.token;
 
-        // Stocker le token dans le local storage (ou session storage selon le besoin)
+
         localStorage.setItem('token', token);
         const userProfile = await getUserProfile(token);
-        // Dispatcher les informations de l'utilisateur
+
         dispatch({
             type: 'USER_LOGIN_SUCCESS',
-            payload: userProfile.data  // Supposons que nous ne voulons que l'email pour l'instant
+            payload: userProfile.data
         });
     } catch (error) {
         console.error('Erreur lors de la connexion:', error);
@@ -27,7 +27,7 @@ export const loginUser = (email, password) => async dispatch => {
 };
 export const logoutUser = () => {
     return dispatch => {
-        localStorage.removeItem('authToken'); // Supprimer le token si vous le stockez dans le localStorage
+        localStorage.removeItem('authToken');
         dispatch({ type: 'USER_LOGOUT' });
     };
 };

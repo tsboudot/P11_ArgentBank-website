@@ -2,8 +2,7 @@ import { updateUserProfile } from "../api/userApi";
 
 export const updateUserName = (userName, token) => async dispatch => {
     try {
-        const response = await updateUserProfile({ userName: userName }, token); // Supposons que votre API s'attend à { userName: "valeur" }
-
+        const response = await updateUserProfile({ userName: userName }, token);
         dispatch({
             type: 'USER_UPDATE_SUCCESS',
             payload: response.data

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import Navigation from '../components/Navigation';
-import { useNavigate } from 'react-router-dom'; // Importez useNavigate ici
+import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/getUser';
 

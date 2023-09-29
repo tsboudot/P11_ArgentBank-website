@@ -27,23 +27,23 @@ export default function userReducer(state = initialState, action) {
         case 'USER_LOGIN_FAILURE':
             return {
                 ...state,
-                user: null, // Aucune information utilisateur n'est disponible en cas d'échec
-                isAuthenticated: false, // L'utilisateur n'est pas authentifié
-                error: action.payload  // Stocker le message d'erreur renvoyé par l'action
+                user: null,
+                isAuthenticated: false,
+                error: action.payload
             };
         case 'USER_UPDATE_SUCCESS':
             return {
                 ...state,
                 user: {
                     ...state.user,
-                    ...action.payload // mise à jour des informations de l'utilisateur
+                    ...action.payload
                 },
                 error: null
             };
         case 'USER_UPDATE_FAILURE':
             return {
                 ...state,
-                error: action.payload  // Stocker le message d'erreur renvoyé par l'action
+                error: action.payload
             };
         case 'USER_LOGOUT':
             localStorage.removeItem('isAuthenticated');
