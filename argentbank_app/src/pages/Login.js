@@ -24,11 +24,11 @@ const Login = ({ loginUser, isAuthenticated }) => {
         loginUser(credentials.username, credentials.password);
     };
 
-    const navigate = useNavigate(); // Utilisez le hook ici
+    const navigate = useNavigate();
 
     if (isAuthenticated) {
-        navigate("/userpage"); // Utilisez navigate pour rediriger vers /userpage
-        return; // Vous pouvez simplement retourner après avoir redirigé pour éviter le rendu du reste du composant
+        navigate("/userpage");
+        return;
     }
 
     return (
@@ -70,7 +70,7 @@ const Login = ({ loginUser, isAuthenticated }) => {
 
 const mapStateToProps = (state) => {
     return {
-        isAuthenticated: state.auth.isAuthenticated // Adaptez cela en fonction de la structure de votre state Redux
+        isAuthenticated: state.auth.isAuthenticated
     };
 };
 
